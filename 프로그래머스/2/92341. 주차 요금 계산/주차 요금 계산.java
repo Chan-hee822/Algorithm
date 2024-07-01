@@ -23,32 +23,18 @@ class Solution {
             String[] recordArr = record.split(" ");
             int time = getMin(recordArr[0]);
             String carNumber = recordArr[1];
-            String carState = recordArr[2];
             //
             if (!carInTime.containsKey(carNumber)) {
                 carInTime.put(carNumber, time);
             } else {
-                int inTime = carInTime.get(carNumber);
-                int outTime = time;
-//                int finalFee =getFee(outTime, inTime);
-                if (totalTime.containsKey(carNumber)) {
-                    totalTime.put(carNumber, totalTime.get(carNumber) + (outTime - inTime));
-                } else {
-                    totalTime.put(carNumber, outTime - inTime);
-                }
+                insertParkingTime(carInTime.get(carNumber), time, totalTime, carNumber);
                 carInTime.remove(carNumber);
             }
         }
         if (!carInTime.isEmpty()) {
             for (Map.Entry<String, Integer> item : carInTime.entrySet()) {
                 String carNumber = item.getKey();
-                int inTime = item.getValue();
-                int outTime = getMin("23:59");
-                if (totalTime.containsKey(carNumber)) {
-                    totalTime.put(carNumber, totalTime.get(carNumber) + (outTime - inTime));
-                } else {
-                    totalTime.put(carNumber, outTime - inTime);
-                }
+                insertParkingTime(item.getValue(), getMin("23:59"), totalTime, carNumber);
             }
         }
         for (Map.Entry<String, Integer> item : totalTime.entrySet()) {
@@ -62,6 +48,16 @@ class Solution {
                 .mapToInt(Map.Entry::getValue)
                 .toArray();
         return answer;
+    }
+
+    private static void insertParkingTime(Integer carInTime, int time, Map<String, Integer> totalTime, String carNumber) {
+        int inTime = carInTime;
+        int outTime = time;
+        if (totalTime.containsKey(carNumber)) {
+            totalTime.put(carNumber, totalTime.get(carNumber) + (outTime - inTime));
+        } else {
+            totalTime.put(carNumber, outTime - inTime);
+        }
     }
 
     public int getFee(int totalTime) {
