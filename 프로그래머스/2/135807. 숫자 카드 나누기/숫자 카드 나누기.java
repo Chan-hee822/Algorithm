@@ -11,6 +11,9 @@ class Solution {
         if (minA != 0 && checkDiv(arrayB, minA)) {
             minA = 0;
         }
+        if (minA > minB) {
+            return minA;
+        }
         minB = getMin(arrayB, minB);
         if (minB == 1) {
             minB = 0;
