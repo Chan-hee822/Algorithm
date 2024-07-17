@@ -26,6 +26,8 @@ public class Main {
             for (int j = N -1; j >= 0; j--) {
                 if (avg < scoreArr[j]) {
                     cnt++;
+                } else {
+                    break;
                 }
             }
             avg = (double) cnt * 100 / N;
