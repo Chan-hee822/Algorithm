@@ -17,8 +17,9 @@ public class Main {
         List<Integer> list = new ArrayList<>();
         list.add(A);
 
-        int idx = 0;
-
+        int idx = 1;
+        Map<Integer, Integer> idxMap = new HashMap<>();
+        idxMap.put(A, 0);
         while (true) {
             int sum = 0;
             while (A > 0) {
@@ -28,23 +29,13 @@ public class Main {
             A = sum;
             if (!map.containsKey(A)) {
                 map.put(A, 1);
+                idxMap.put(A, idx++);
                 list.add(A);
-                idx++;
                 continue;
             }
-            if (map.get(A) == 2) {
-                break;
-            }
-            map.put(A, map.get(A) + 1);
+            idx = idxMap.get(A);
+            break;
         }
-
-        int result = 0;
-        for (Map.Entry<Integer, Integer> item : map.entrySet()) {
-            if (item.getValue() == 1) {
-                result++;
-            }
-        }
-
-        System.out.println(result);
+        System.out.println(idx);
     }
 }
