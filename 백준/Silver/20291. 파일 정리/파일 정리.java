@@ -29,8 +29,10 @@ public class Main {
         }
 
         list = list.stream().sorted().collect(Collectors.toList());
+        StringBuilder sb = new StringBuilder();
         for (String f : list) {
-            System.out.println(f);
+            sb.append(f).append('\n');
         }
+        System.out.println(sb);
     }
 }
