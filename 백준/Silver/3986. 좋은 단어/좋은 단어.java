@@ -11,9 +11,9 @@ public class Main {
         int N = Integer.parseInt(st.nextToken());
         int result = 0;
         for (int i = 0; i < N; i++) {
-            Stack<String> stack = new Stack<>();
-            String[] word = br.readLine().split("");
-            for (String item : word) {
+            Stack<Character> stack = new Stack<>();
+            char[] word = br.readLine().toCharArray();
+            for (char item : word) {
 
                 if (stack.isEmpty()) {
                     stack.push(item);
