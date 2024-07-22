@@ -20,12 +20,18 @@ public class Main {
         int c = Integer.parseInt(br.readLine());
         int n0 = Integer.parseInt(br.readLine());
 
-        boolean satisfies = a0 <= (c - a1) * n0;
+        int left = a1 * n0 + a0;
+        int right = c * n0;
         
-        if (c >= a1 && satisfies) {
-            System.out.println(1);
-        } else {
+        if (c < a1) {
             System.out.println(0);
+            return;
         }
+
+        if (left <= right) {
+            System.out.println(1);
+            return;
+        }
+        System.out.println(0);
     }
 }
