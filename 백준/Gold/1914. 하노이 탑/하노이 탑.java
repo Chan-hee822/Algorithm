@@ -15,9 +15,12 @@ public class Main {
         if (N <= 20) {
             List<int[]> list = new ArrayList<>();
             hanoi(N, 1, 2, 3, list);
+            StringBuilder sb = new StringBuilder();
             for (int[] step : list) {
-                System.out.println(step[0] + " " + step[1]);
+                sb.append(step[0]).append(" ").append(step[1]).append('\n');
+//                System.out.println(step[0] + " " + step[1]);
             }
+            System.out.println(sb.toString());
         }
     }
 
