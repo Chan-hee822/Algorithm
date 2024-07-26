@@ -27,21 +27,23 @@ public class Main {
                 if (i == j) {
                     continue;
                 }
+                
+                if (arr[j] == 0) {
+                    if (target == 0) {
+                        if (map.get(target) > 2) {
+                            result++;
+                            break;
+                        }
+                    } else {
+                        if (map.get(target) > 1) {
+                            result++;
+                            break;
+                        }
+                    }
+                    continue;
+                }
+                
                 long diff = target - arr[j];
-                if (target == 0 && arr[j] == 0) {
-                    if (map.get(0L) > 2) {
-                        result++;
-                        break;
-                    }
-                    continue;
-                }
-                if (diff == target) {
-                    if (map.get(target) > 1) {
-                        result++;
-                        break;
-                    }
-                    continue;
-                }
                 if (map.containsKey(diff)) {
                     if (diff == arr[j]) {
                         if (map.get(diff) > 1) {
