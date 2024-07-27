@@ -8,7 +8,6 @@ import java.util.StringTokenizer;
 public class Main {
 
     static String[][] map;
-//    static boolean[][] visited;
     final static int[] dx = {0, 1, 0, -1};
     final static int[] dy = {1, 0, -1, 0};
 
@@ -24,43 +23,23 @@ public class Main {
         map = new String[X][Y];
         boolean[][] visited = new boolean[X][Y];
 
-        Queue<int[]> vQueue = new LinkedList<>();
-        Queue<int[]> kQueue = new LinkedList<>();
+        Queue<int[]> animalQueue = new LinkedList<>();
         for (int i = 0; i < X; i++) {
             String[] strArr = br.readLine().split("");
             for (int j = 0; j < Y; j++) {
                 String s = strArr[j];
                 map[i][j] = s;
-                if (s.equals("k")) {                // 양
-                    kQueue.add(new int[]{i, j});
-                } else if (s.equals("v")) {         // 늑대
-                    vQueue.add(new int[]{i, j});
+                if (s.equals("k") || s.equals("v")) {
+                    animalQueue.add(new int[]{i, j});
                 }
             }
         }
 
         int resultK = 0;
         int resultV = 0;
-        while (!kQueue.isEmpty()) {
-            int[] point = kQueue.poll();
+        while (!animalQueue.isEmpty()) {
+            int[] point = animalQueue.poll();
             int[] temp = dfs(0, 0, point[0], point[1], visited);
-            if (temp == null) {
-                continue;
-            }
-            int k = temp[0];
-            int v = temp[1];
-            if (k > v) {
-                resultK += k;
-            } else {
-                resultV += v;
-            }
-        }
-        while (!vQueue.isEmpty()) {
-            int[] point = vQueue.poll();
-            int[] temp = dfs(0, 0, point[0], point[1], visited);
-            if (temp == null) {
-                continue;
-            }
             int k = temp[0];
             int v = temp[1];
             if (k > v) {
