@@ -30,7 +30,9 @@ public class Main {
 
         if (result.isEmpty()) {
             System.out.println(-1);
+            return;
         }
+
         List<Integer> sortedList = result.stream().sorted().collect(Collectors.toList());
 
         StringBuilder sb = new StringBuilder();
@@ -45,7 +47,8 @@ public class Main {
 
         Queue<int[]> queue = new LinkedList<>();
         queue.add(new int[]{X, 0});
-        int[] distances = new int[lists.length];
+//        int[] distances = new int[lists.length];
+        boolean[] visited = new boolean[lists.length];
 
         while (!queue.isEmpty()) {
             int[] cur = queue.poll();
@@ -62,8 +65,8 @@ public class Main {
 
             for (int i = 0; i < lists[start].size(); i++) {
                 int newStart = lists[start].get(i);
-                if (distances[newStart] == 0) {
-                    distances[newStart] = distances[start] + 1;
+                if (!visited[newStart]) {
+                    visited[newStart] = true;
                     queue.add(new int[]{newStart, cnt + 1});
                 }
             }
