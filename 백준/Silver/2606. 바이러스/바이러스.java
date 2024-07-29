@@ -27,20 +27,18 @@ public class Main {
     }
 
     private static int bfs(List<Integer>[] networks, int start, int cnt) {
-        Queue<int[]> queue = new LinkedList<>();
+        Queue<Integer> queue = new LinkedList<>();
         boolean[] visited = new boolean[networks.length];
-        queue.add(new int[]{start, cnt});
+        queue.add(start);
         visited[start] = true;
 
         while (!queue.isEmpty()) {
-            int[] cur = queue.poll();
-            int curCom = cur[0];
-            int curCnt = cur[1];
+            int curCom = queue.poll();
 
             for (int i = 0; i < networks[curCom].size(); i++) {
                 int nextCom = networks[curCom].get(i);
                 if (!visited[nextCom]) {
-                    queue.add(new int[]{nextCom, curCnt + 1});
+                    queue.add(nextCom);
                     cnt++;
                     visited[nextCom] = true;
                 }
