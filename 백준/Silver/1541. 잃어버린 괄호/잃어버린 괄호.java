@@ -43,16 +43,18 @@ public class Main {
         boolean flag = false;
         for (int i = 1; i < split.length; i++) {
             Character c = queue.poll();
-            if (!flag && c.equals('-')) {
+            int num = Integer.parseInt(split[i]);
+            if (flag) {
+                resultMinus +=num;
+                continue;
+            }
+
+            if (c.equals('-')) {
                 flag = true;
-                resultMinus += (Integer.parseInt(split[i]));
+                resultMinus += num;
                 continue;
             }
-            if (!flag && c.equals('+')) {
-                resultPlus += (Integer.parseInt(split[i]));
-                continue;
-            }
-            resultMinus += (Integer.parseInt(split[i]));
+            resultPlus += num;
         }
         System.out.println(resultPlus - resultMinus);
     }
