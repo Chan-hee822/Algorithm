@@ -43,16 +43,7 @@ public class Main {
                         time += (curHeight - h) * 2;
                         b += curHeight - h;
                     } else if (curHeight < h) {
-                        int need = h - curHeight;
-                        if (b >= need) {
-                            b -= need;
-                            time += need;
-                        } else {
-                            need -= b;
-                            time += b;
-                            b = 0;
-                            leaves += need;
-                        }
+                        leaves += h - curHeight;
                     }
                 }
             }
