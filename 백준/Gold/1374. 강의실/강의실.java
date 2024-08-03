@@ -20,11 +20,9 @@ public class Main {
         Arrays.sort(table, (a, b) -> a[0] == b[0] ? a[1] - b[1] : a[0] - b[0]);
 
         PriorityQueue<Integer> que = new PriorityQueue<>();
-        int classCnt = 0;
         for (int[] item : table) {
             if (que.isEmpty()) {
                 que.add(item[1]);
-                classCnt = 1;
                 continue;
             }
 
@@ -33,14 +31,11 @@ public class Main {
             int curEndTime = item[1];
             if (curStartTime < endTime) {
                 que.add(curEndTime);
-                if (classCnt < que.size()) {
-                    classCnt++;
-                }
                 continue;
             }
             que.add(item[1]);
             que.poll();
         }
-        System.out.println(classCnt);
+        System.out.println(que.size());
     }
 }
